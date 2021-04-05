@@ -1,0 +1,15 @@
+<div>
+    <h2>
+        Projects
+    </h2>
+</div>
+<a class="list-group-item clearfix" *ngFor="let work of workList;let i=index" [ngClass]="{'selected': id == i}"
+    (click)="onClickWork(i)">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">{{work.projectName}}</h4>
+        <p class="list-group-item-text">{{work.technology}}</p>
+    </div>
+    <span class="pull-right">
+        <img [src]="work.imagePath" alt="{{ work.projectName }}" class="img-responsive mh">
+    </span>
+</a>
