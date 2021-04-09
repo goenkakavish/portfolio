@@ -10,7 +10,7 @@
                     Hello Everybody, I am
                 </h6>
                 <h2>
-                    KAVISH GOENKA
+                    {{detailsUser }}
                 </h2>
                 <p>Software Developer</p>
                 <p>
@@ -22,10 +22,10 @@
                 <div class="mt-5">
                     <p>
                         <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
-                        24th September,1997
+                        {{detailsUser.dateOfBirth}}
                     </p>
-                    <p><i class="fa fa-phone mr-2" aria-hidden="true"></i>7990451417</p>
-                    <p><i class="fa fa-envelope mr-2" aria-hidden="true"></i>goenkakavish@gmail</p>
+                    <p><i class="fa fa-phone mr-2" aria-hidden="true"></i> {{detailsUser.phoneNumber}}</p>
+                    <p><i class="fa fa-envelope mr-2" aria-hidden="true"></i> {{detailsUser.email}}</p>
                 </div>
                 <div class="mt-5">
                     <a href="https://www.instagram.com" target="_blank" class="mr-2">

@@ -9,6 +9,7 @@ import { AboutComponent } from './about/about.component';
 import { WorkComponent } from './work/work.component';
 import { WorkListComponent } from './work/work-list/work-list.component';
 import { WorkDetailComponent } from './work/work-detail/work-detail.component';
+import { PersonalDetailsComponent } from './personal-details/personal-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { WorkDetailComponent } from './work/work-detail/work-detail.component';
     AboutComponent,
     WorkComponent,
     WorkListComponent,
-    WorkDetailComponent
+    WorkDetailComponent,
+    PersonalDetailsComponent
     
   ],
   imports: [
