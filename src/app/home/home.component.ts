@@ -12,10 +12,10 @@ export class HomeComponent implements OnInit {
   detailsUser: any;
 
   ngOnInit(): void {
-    this.detailsUser = this.dataShareService.personalDetails.subscribe(details => {
-      this.detailsUser = details;
-      console.log(this.detailsUser);
-    })
+    // this.detailsUser = this.dataShareService.personalDetails.subscribe(details => {
+    //   this.detailsUser = details;
+    //   console.log(this.detailsUser);
+    // })
   }
 
 }

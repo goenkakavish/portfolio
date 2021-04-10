@@ -10,6 +10,7 @@ import { WorkComponent } from './work/work.component';
 import { WorkListComponent } from './work/work-list/work-list.component';
 import { WorkDetailComponent } from './work/work-detail/work-detail.component';
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PersonalDetailsComponent } from './personal-details/personal-details.co
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     NgbModule
   ],
   providers: [],
