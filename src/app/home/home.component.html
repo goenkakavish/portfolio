@@ -10,22 +10,19 @@
                     Hello Everybody, I am
                 </h6>
                 <h2>
-                    KAVISH GOENKA
+                    {{detailsUser.name}}
                 </h2>
-                <p>Software Developer</p>
+                <p>{{detailsUser.designation}}</p>
                 <p>
-                    I have been developing high quality web applications since 1+ years.My Current technology stack
-                    includes Javascript, Typescript, Angular,
-                    NodeJS and various other
-                    frameworks and libraries related to them.
+                  {{detailsUser.about}}
                 </p>
                 <div class="mt-5">
                     <p>
                         <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
-                        24th September,1997
+                       {{detailsUser.dateOfBirth}}
                     </p>
-                    <p><i class="fa fa-phone mr-2" aria-hidden="true"></i>7990451417</p>
-                    <p><i class="fa fa-envelope mr-2" aria-hidden="true"></i>goenkakavish@gmail</p>
+                    <p><i class="fa fa-phone mr-2" aria-hidden="true"></i>{{detailsUser.phoneNumber[0]}}</p>
+                    <p><i class="fa fa-envelope mr-2" aria-hidden="true"></i>{{detailsUser.email}}</p>
                 </div>
                 <div class="mt-5">
                     <a href="https://www.instagram.com" target="_blank" class="mr-2">
@@ -33,7 +30,7 @@
                     </a>
                     <a href="https://www.facebook.com" target="_blank">
                         <img src="../../assets/facebook.png" class="logo">
-                    </a>
+                    </a> 
                 </div>
             </div>
         </div>
