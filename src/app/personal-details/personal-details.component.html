@@ -47,11 +47,16 @@
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
-                  <label>About*</label>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <label>About*</label>
+                    <label *ngIf="portfolioSignIn.controls.about.errors">
+                      <span class="form-text text-danger">
+                        About Field Cannot be Empty</span>
+                    </label>
+                  </div>
                   <quill-editor [styles]="{height:'300px'}" [modules]="editModule" placeholder="Enter About You. "
                     formControlName="about">
                   </quill-editor>
-
                 </div>
               </div>
             </div>
