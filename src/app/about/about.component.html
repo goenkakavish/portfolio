@@ -1,70 +1,70 @@
 <app-header></app-header>
 <div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-6">
-                <div>
-                    <h1>Education</h1>
-                </div>
-                <div class="tab-content-timeline mt-3">
-                    <div *ngFor="let timeline of timeLineDataEducation">
-                        <span class="date-listing mb-2">{{timeline.year}}</span>
-                        <ul class="timeline">
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge" class="timeline-badge COMPLETED">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-body">
-                                        <h5>{{timeline.course}}</h5>
-                                        <p>
-                                            {{timeline.name_of_institute}}
-                                        </p>
-                                        <p>
-                                            {{timeline.location}}
-                                        </p>
-                                        <p>
-                                            {{timeline.result}}
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div>
-                    <h1>Experience</h1>
-                </div>
-                <div class="tab-content-timeline mt-3">
-                    <div *ngFor="let timelineExperience of timelineDataExperience">
-                        <span class="date-listing mb-2">{{timelineExperience.duration}}</span>
-                        <ul class="timeline">
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge" class="timeline-badge COMPLETED">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-body">
-                                        <h5>{{timelineExperience.company_name}}</h5>
-                                        <p>
-                                            {{timelineExperience.designation}}
-                                        </p>
-                                        <ul>
-                                            <li *ngFor="let description of timelineExperience.description">
-                                                {{description}}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <div>
+          <h1>Education</h1>
         </div>
+        <div class="tab-content-timeline mt-3">
+          <div *ngFor="let timeline of timeLineDataEducation">
+            <span class="date-listing mb-2">{{timeline.year}}</span>
+            <ul class="timeline">
+              <li class="timeline-inverted">
+                <div class="timeline-badge" class="timeline-badge COMPLETED">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-body">
+                    <h5>{{timeline.course}}</h5>
+                    <p>
+                      {{timeline.name_of_institute}}
+                    </p>
+                    <p>
+                      {{timeline.location}}
+                    </p>
+                    <p>
+                      {{timeline.result}}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col-sm-6" *ngIf="timelineDataExperience && timelineDataExperience.length>0">
+        <div>
+          <h1>Experience</h1>
+        </div>
+        <div class="tab-content-timeline mt-3">
+          <div *ngFor="let timelineExperience of timelineDataExperience">
+            <span class="date-listing mb-2">{{timelineExperience.duration}}</span>
+            <ul class="timeline">
+              <li class="timeline-inverted">
+                <div class="timeline-badge" class="timeline-badge COMPLETED">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-body">
+                    <h5>{{timelineExperience.company_name}}</h5>
+                    <p>
+                      {{timelineExperience.designation}}
+                    </p>
+                    <ul>
+                      <li *ngFor="let description of timelineExperience.description">
+                        {{description}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

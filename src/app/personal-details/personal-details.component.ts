@@ -11,7 +11,6 @@ export class PersonalDetailsComponent implements OnInit {
 
   portfolioSignIn: FormGroup;
   constructor(private router: Router,
-    private dataShareService: DataShareServiceService,
     private readonly changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -81,7 +80,6 @@ export class PersonalDetailsComponent implements OnInit {
     return (this.portfolioSignIn.get('phoneNumber') as FormArray).removeAt(i);
   }
   toggleIsExperience() {
-    console.log(this.portfolioSignIn);
     if (this.portfolioSignIn.get('isExperience').value) {
       for (let i = 0; i < this.portfolioSignIn['controls'].timelineDataExperience['controls'].length; i++) {
         this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.setValidators([Validators.required]);
@@ -135,14 +133,14 @@ export class PersonalDetailsComponent implements OnInit {
   }
   addProjectDescription(i) {
     const control = new FormControl(null, [Validators.required]);
-    (<FormArray>this.portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls']).push(control);
+    (<FormArray>this.portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription).push(control);
   }
   addExperienceDescription(i) {
     const control = new FormControl(null, [Validators.required]);
-    (<FormArray>this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description['controls']).push(control);
+    (<FormArray>this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description).push(control);
   }
-  removeProjectDescription(i, j) {
-    return (this.portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription as FormArray).removeAt(j);
+  removeProjectDescription(i, k) {
+    return (this.portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription as FormArray).removeAt(k);
   }
   removeExperienceDescription(i, j) {
     return (this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description as FormArray).removeAt(j);

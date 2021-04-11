@@ -238,19 +238,19 @@
                                       <label class="float-left">Project Description
                                       </label>
                                       <div class="row" formArrayName="projectDescription"
-                                        *ngFor="let description of portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'];let j=index;">
+                                        *ngFor="let description of portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'];let k=index;">
                                         <div class="col-sm-6">
-                                          <input type="text" class="form-control" [formControlName]="j"
-                                            placeholder="Enter the desription {{j+1}}"
-                                            [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'][j].errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'][j].errors}">
+                                          <input type="text" class="form-control" [formControlName]="k"
+                                            placeholder="Enter the desription {{k+1}}"
+                                            [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'][k].errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'][k].errors}">
                                         </div>
                                         <div class="col-sm-2">
                                           <button type="button" class="btn btn-primary icon-btn rounded-circle mt-1"
-                                            *ngIf="j===0" (click)="addProjectDescription(i)">
+                                            *ngIf="k===0" (click)="addProjectDescription(i)">
                                             <em class="fa fa-plus text-white"></em>
                                           </button>
                                           <button type="button" class="btn btn-danger icon-btn rounded-circle mt-1"
-                                            *ngIf="j!==0" (click)="removeProjectDescription(i,j)">
+                                            *ngIf="k!==0" (click)="removeProjectDescription(i,k)">
                                             <em class="fa fa-minus text-white"></em>
                                           </button>
                                         </div>
@@ -359,7 +359,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!portfolioSignIn.valid">Login</button>
+                <button class="btn btn-primary" (click)="onSubmit()">Login</button>
                 <!-- [routerLink]="['/Project-listing']" -->
               </Form>
             </div>
@@ -369,36 +369,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!-- <div class="row">
-  <div class="col-sm-12">
-    <form [formGroup]="portfolioSignIn">
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" formControlName="name">
-      </div>
-      <div class="form-group">
-        <label>Date of Birth</label>
-        <input type="text" formControlName="dateOfBirth">
-      </div>
-
-      <div>
-        <div formArrayName="phoneNumber">
-            <label>phone Number</label>
-          <button (click)="addPhoneNumber()">Add phone Number</button>
-          <div *ngFor="let phone of portfolioSignIn.get('phoneNumber')['controls'];let i=index;">
-              <input type="text" >
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="text" formControlName="email">
-      </div>
-      <button type="submit" (click)="onSubmit()" [disabled]="!portfolioSignIn.valid">submit</button>
-    </form>
-  </div>
-</div> -->

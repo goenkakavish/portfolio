@@ -1,10 +1,32 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataShareServiceService {
-  personalDetails = new BehaviorSubject(null);
   constructor() { }
+
+  fetchingDataOfUser() {
+    let data = JSON.parse(localStorage.getItem('portfolioDetails'));
+    return data;
+  }
+
+  fetchingDataOfTimeLineDataEducation() {
+    let data: any = {};
+    data = JSON.parse(localStorage.getItem('portfolioDetails'));
+    return [...data.timelineDataEducation];
+  }
+
+  fetchingDataOfWorkList() {
+    let data: any = {};
+    data = JSON.parse(localStorage.getItem('portfolioDetails'));
+    return [...data.projects];
+  }
+
+
+  fetchingDataOfTimeLineDataExperience() {
+    let data: any = {};
+    data = JSON.parse(localStorage.getItem('portfolioDetails'));
+    return [...data.timelineDataExperience];
+  }
 }
