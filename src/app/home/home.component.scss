@@ -1,16 +1,16 @@
 .imgPersonal {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .logo {
-    max-width: 50px;
-    height: auto;
-    cursor: pointer;
+  max-width: 50px;
+  height: auto;
+  cursor: pointer;
 }
 
 @media (min-width: 576px) {
-    .hero {
-        margin: 2rem 6rem;
-    }
+  .hero {
+    margin: 2rem 6rem;
+  }
 }

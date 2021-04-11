@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   detailsUser: any;
 
   ngOnInit(): void {
+    //Fetching the Personal Details.
     this.detailsUser = this.dataShareService.fetchingDataOfUser();
   }
 
