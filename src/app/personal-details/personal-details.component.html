@@ -131,8 +131,8 @@
                     <div class="col-12 col-sm-4">
                       <div class="form-group">
                         <label>Result*</label>
-                        <input type="text" class="form-control" formControlName="result"
-                          placeholder="Enter result(7.5 cgpa or 75%)"
+                        <input type="number" class="form-control" formControlName="result"
+                          placeholder="Enter result in percentage"
                           [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].result.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].result.errors}">
                       </div>
                     </div>
@@ -269,7 +269,7 @@
                         <div class="form-group">
                           <label>Duration From*</label>
                           <input type="date" class="form-control" formControlName="durationFrom"
-                            placeholder="Enter the Duration From" [max]="maxiDate" (change)="onDurationFromChange(i)"
+                            placeholder="Enter the Duration From" [max]="maxiDate" (change)="onDurationFromChange($event,i)"
                             [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom.errors}">
                         </div>
                         <!-- -->
@@ -280,12 +280,13 @@
                           <div class="d-flex justify-content-between align-items-center">
                             <label>Duration To*</label>
                             <label>
-                              <input type="checkbox" (change)="onChangeCurrentlyWorking($event,i)"> Is Currently
+                              <input type="checkbox" 
+                                (change)="onChangeCurrentlyWorking($event,i)"> Is Currently
                               Working?
                             </label>
                           </div>
                           <input type="date" class="form-control" formControlName="durationTo"
-                            *ngIf="showExperienceCurrentTo" placeholder="Enter the Duration To" [max]="maxiDate"
+                            [hidden]="!showExperienceCurrentTo" placeholder="Enter the Duration To" [max]="maxiDate"
                             [min]="minDate"
                             [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo.errors}">
                         </div>
@@ -322,7 +323,8 @@
           </fieldset>
 
           <div class="text-center mt-4 mb-2">
-            <button type="button" class="btn btn-primary px-4" (click)="onSubmit()">Login</button>
+            <button type="button" class="btn btn-primary px-4" (click)="onSubmit()"
+              [disabled]="!portfolioSignIn.valid">Login</button>
           </div>
         </form>
       </div>

@@ -53,7 +53,7 @@ export class PersonalDetailsComponent implements OnInit {
     return new FormGroup({
       duration: new FormGroup({
         durationFrom: new FormControl(null, [Validators.required]),
-        durationTo: new FormControl({ value: null, disabled: true }, [Validators.required])
+        durationTo: new FormControl({ value: null, disabled: true })
       }),
       company_name: new FormControl(null, [Validators.required]),
       designation: new FormControl(null, [Validators.required]),
@@ -77,7 +77,7 @@ export class PersonalDetailsComponent implements OnInit {
       course: new FormControl(null, [Validators.required]),
       name_of_institute: new FormControl(null, [Validators.required]),
       location: new FormControl(null, [Validators.required]),
-      result: new FormControl(null, [Validators.required])
+      result: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(100), Validators.pattern('^((100)|([0-9]{1,2}(.[0-9]{1,2})?))$')])
     })
   }
   addPhoneNumber() {
@@ -95,6 +95,7 @@ export class PersonalDetailsComponent implements OnInit {
     return (this.portfolioSignIn.get('phoneNumber') as FormArray).removeAt(i);
   }
   toggleIsExperience() {
+    this.showExperienceCurrentTo = true;
     if (this.portfolioSignIn.get('isExperience').value) {
       this.portfolioSignIn.addControl('timelineDataExperience', new FormArray([this.initTimelineDataExperience()]));
     } else {
@@ -137,28 +138,37 @@ export class PersonalDetailsComponent implements OnInit {
   removeExperienceDescription(i, j) {
     return (this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description as FormArray).removeAt(j);
   }
-  onDurationFromChange(i) {
+  onDurationFromChange(event, i) {
     const durationTo = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo;
     const durationFrom = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom;
     this.minDate = durationFrom.value;
-    if (durationFrom.value) {
+    if (durationFrom.value && this.showExperienceCurrentTo) {
       durationTo.enable();
       durationTo.setValidators([Validators.required]);
     } else {
-      durationTo.disabled();
+      durationTo.disable();
       durationTo.clearValidators();
     }
     durationTo.updateValueAndValidity();
   }
 
   onChangeCurrentlyWorking(event, i) {
+    console.log(event.target.checked);
     const durationTo = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo;
+    const durationFrom = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom;
     if (event.target.checked) {
       this.showExperienceCurrentTo = false;
       durationTo.clearValidators();
-    } else {
+    }
+    else if (!durationFrom.value && !event.target.checked) {
       this.showExperienceCurrentTo = true;
+      durationTo.disable();
+      durationTo.clearValidators();
+    } else if (durationFrom.value && !event.target.checked) {
+      this.showExperienceCurrentTo = true;
+      durationTo.enable();
       durationTo.setValidators([Validators.required]);
     }
+    durationTo.updateValueAndValidity();
   }
 }
