@@ -10,6 +10,19 @@ import { DataShareServiceService } from '../data-share-service.service';
 export class PersonalDetailsComponent implements OnInit {
 
   portfolioSignIn: FormGroup;
+  editModule = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['code-block'],
+
+      [{ header: 1 }, { header: 2 }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+
+      [{ script: 'sub' }, { script: 'super' }],
+
+      ['clean'],
+    ]
+  };
   constructor(private router: Router,
     private readonly changeDetectorRef: ChangeDetectorRef) { }
 
@@ -70,10 +83,8 @@ export class PersonalDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.dataShareService.personalDetails.next(this.portfolioSignIn.value)
-    // this.router.navigate(['home']);
     localStorage.setItem('portfolioDetails', JSON.stringify(this.portfolioSignIn.value));
-    console.log(this.portfolioSignIn);
+    
     this.router.navigate(['home']);
   }
   removePhoneNumber(i) {

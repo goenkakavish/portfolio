@@ -1,22 +1,12 @@
 .loginBg {
-  height: 100%;
-  text-align: center;
   display: flex;
   align-items: center;
   position: relative;
   z-index: 1000;
-
-  .login {
-    padding: 30px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 }
 
-.textCenter {
-  text-align: center;
-  display: block;
+fieldset {
+  margin-top: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -35,10 +25,6 @@
       padding: 30px;
     }
   }
-}
-
-.bgWhite {
-  background-color: white;
 }
 
 .login-header {
@@ -71,7 +57,4 @@
 .step-title {
   color: blue;
   font-weight: 500;
-}
-.bg-white {
-  background-color: white;
 }

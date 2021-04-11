@@ -1,370 +1,309 @@
 <div class="loginBg min-vh-100">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="shadow-lg">
-          <div class="row box no-gutter">
-            <div class="col-md-12 col-sm-12 login bgWhite">
-              <div class="row textCenter mx-auto mb-2">
-                <div class="col">
-                  <h1 class="login-header mb-2">Login</h1>
+  <div class="container shadow-lg">
+    <div class="row box no-gutter bg-white p-1 px-sm-4">
+      <div class="col">
+        <h1 class="login-header text-center my-2">Login</h1>
+        <form [formGroup]="portfolioSignIn">
+          <fieldset>
+            <legend>Personal Details</legend>
+            <div class="row">
+              <div class="col-12 col-sm-8">
+                <div class="form-group">
+                  <label>Name*</label>
+                  <input type="text" class="form-control" formControlName="name" placeholder="Enter your name"
+                    [ngClass]="{'error' : portfolioSignIn.controls.name.errors, 'success' : !portfolioSignIn.controls.name.errors}">
                 </div>
               </div>
-              <Form [formGroup]="portfolioSignIn">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="border step-pad15 step-margin position-relative">
-                      <p class="step-title bg-white">Personal-Details</p>
 
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="float-left">Name
-                            </label>
-                            <input type="text" class="form-control" formControlName="name" placeholder="Enter the Name"
-                              [ngClass]="{'error' : portfolioSignIn.controls.name.errors, 'success' : !portfolioSignIn.controls.name.errors}">
-                          </div>
-                        </div>
-                      </div>
+              <div class="col-12 col-sm-4">
+                <div class="form-group">
+                  <label>Date of Birth*</label>
+                  <input type="date" class="form-control" formControlName="dateOfBirth"
+                    placeholder="Enter your date of birth"
+                    [ngClass]="{'error' : portfolioSignIn.controls.dateOfBirth.errors, 'success' : !portfolioSignIn.controls.dateOfBirth.errors}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Personal Image Url*</label>
+                  <input type="text" class="form-control" formControlName="imageUrl"
+                    placeholder="Enter the Public Image Url"
+                    [ngClass]="{'error' : portfolioSignIn.controls.imageUrl.errors, 'success' : !portfolioSignIn.controls.imageUrl.errors}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Designation*</label>
+                  <input type="text" class="form-control" formControlName="designation"
+                    placeholder="Enter the Designation"
+                    [ngClass]="{'error' : portfolioSignIn.controls.designation.errors, 'success' : !portfolioSignIn.controls.designation.errors}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>About*</label>
+                  <quill-editor [styles]="{height:'300px'}" [modules]="editModule" placeholder="Enter About us. "
+                    formControlName="about">
+                  </quill-editor>
 
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="float-left">Date of Birth
-                            </label>
-                            <input type="date" class="form-control" formControlName="dateOfBirth"
-                              placeholder="Enter the Date of Birth"
-                              [ngClass]="{'error' : portfolioSignIn.controls.dateOfBirth.errors, 'success' : !portfolioSignIn.controls.dateOfBirth.errors}">
-                          </div>
-                        </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Email*</label>
+                  <input type="text" class="form-control" formControlName="email" placeholder="Enter the Email"
+                    [ngClass]="{'error' : portfolioSignIn.controls.email.errors, 'success' : !portfolioSignIn.controls.email.errors}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Phone Number* <small>(Max 2)</small></label>
+                  <div class="row" formArrayName="phoneNumber"
+                    *ngFor="let phone of portfolioSignIn.get('phoneNumber')['controls'];let i=index;">
+                    <div class="col-10 col-sm-11">
+                      <div class="form-group">
+                        <input type="text" class="form-control" [formControlName]="i"
+                          placeholder="Enter {{i+1}} Phone Number"
+                          [ngClass]="{'error' : portfolioSignIn.controls.phoneNumber['controls'][i].errors, 'success' : !portfolioSignIn.controls.phoneNumber['controls'][i].errors}">
                       </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="float-left">Personal Image Url
-                            </label>
-                            <input type="text" class="form-control" formControlName="imageUrl"
-                              placeholder="Enter the Public Image Url"
-                              [ngClass]="{'error' : portfolioSignIn.controls.imageUrl.errors, 'success' : !portfolioSignIn.controls.imageUrl.errors}">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="float-left">Designation
-                            </label>
-                            <input type="text" class="form-control" formControlName="designation"
-                              placeholder="Enter the Designation"
-                              [ngClass]="{'error' : portfolioSignIn.controls.designation.errors, 'success' : !portfolioSignIn.controls.designation.errors}">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="float-left">About</label>
-                            <textarea class="form-control " formControlName="about" rows="2"
-                              placeholder="Brief About You."
-                              [ngClass]="{'error' : portfolioSignIn.controls.about.errors, 'success' : !portfolioSignIn.controls.about.errors}"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="float-left">Email
-                            </label>
-                            <input type="text" class="form-control" formControlName="email"
-                              placeholder="Enter the Email"
-                              [ngClass]="{'error' : portfolioSignIn.controls.email.errors, 'success' : !portfolioSignIn.controls.email.errors}">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="float-left">Phone Number
-                          </label>
-                          <div formArrayName="phoneNumber"
-                            *ngFor="let phone of portfolioSignIn.get('phoneNumber')['controls'];let i=index;">
-                            <div class="row">
-                              <div class="col-sm-10">
-                                <div class="form-group">
-                                  <input type="text" class="form-control" [formControlName]="i"
-                                    placeholder="Enter {{i+1}} Phone Number"
-                                    [ngClass]="{'error' : portfolioSignIn.controls.phoneNumber['controls'][i].errors, 'success' : !portfolioSignIn.controls.phoneNumber['controls'][i].errors}">
-                                </div>
-                              </div>
-                              <div class="col-sm-2">
-                                <button type="button" class="btn btn-primary icon-btn rounded-circle mt-1" *ngIf="i===0"
-                                  (click)="addPhoneNumber()"
-                                  [disabled]="portfolioSignIn.get('phoneNumber')['controls'].length>=2">
-                                  <em class="fa fa-plus text-white"></em>
-                                </button>
-                                <button type="button" class="btn btn-danger icon-btn rounded-circle mt-1" *ngIf="i!==0"
-                                  (click)="removePhoneNumber(i)">
-                                  <em class="fa fa-minus text-white"></em>
-                                </button>
-                              </div>
+                    </div>
+                    <div class="col-2 col-sm-1">
+                      <button type="button" class="btn btn-danger btn-sm rounded-circle" *ngIf="i!==0"
+                        (click)="removePhoneNumber(i)">
+                        <i class="fa fa-minus text-white"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-sm" (click)="addPhoneNumber()"
+                    [hidden]="portfolioSignIn.get('phoneNumber')['controls'].length>=2">
+                    Add Phone Number
+                  </button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
 
-                            </div>
-                          </div>
-                        </div>
+          <fieldset>
+            <legend>Education Details <small>(Max 3)</small></legend>
+            <div formArrayName="timelineDataEducation">
+              <div class="card mb-2" [formGroupName]="i"
+                *ngFor="let education of portfolioSignIn['controls'].timelineDataEducation['controls']; let i=index;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <div>Education {{i+1}}</div>
+                  <button type="button" class="btn btn-danger btn-sm" *ngIf="i!==0"
+                    (click)="removeEducationFields(i)">Remove</button>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-sm-8">
+                      <div class="form-group">
+                        <label>Name of Institute*</label>
+                        <input type="text" class="form-control" formControlName="name_of_institute"
+                          placeholder="Enter the Name of Institute"
+                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].name_of_institute.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].name_of_institute.errors}">
                       </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                      <div class="form-group">
+                        <label>Year*</label>
+                        <input type="number" class="form-control" formControlName="year" placeholder="Enter the year"
+                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].year.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].year.errors}">
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-8">
+                      <div class="form-group">
+                        <label>Course Name*</label>
+                        <input type="text" class="form-control" formControlName="course" placeholder="Enter course name"
+                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].course.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].course.errors}">
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                      <div class="form-group">
+                        <label>Result*</label>
+                        <input type="text" class="form-control" formControlName="result"
+                          placeholder="Enter result(7.5 cgpa or 75%)"
+                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].result.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].result.errors}">
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Location*</label>
+                        <input type="text" class="form-control" formControlName="location"
+                          placeholder="Enter the location"
+                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].location.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].location.errors}">
+                      </div>
+                    </div>
+                    <div class="col-sm-1">
+
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="border step-pad15 step-margin position-relative">
-                      <p class="step-title bg-white">Education-Details (Max 3)</p>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div formArrayName="timelineDataEducation">
-                            <button class="btn btn-primary" (click)="addEducationFields()"
-                              [disabled]="portfolioSignIn.get('timelineDataEducation')['controls'].length>=3">Add
-                              Education</button>
-                            <ng-container [formGroupName]="i"
-                              *ngFor="let education of portfolioSignIn['controls'].timelineDataEducation['controls']; let i=index;">
-                              <div class="row">
-                                <div class="col-sm-2">
-                                  <div class="form-group">
-                                    <label class="float-left">Year
-                                    </label>
-                                    <input type="number" class="form-control" formControlName="year"
-                                      placeholder="Enter the Year"
-                                      [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].year.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].year.errors}">
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  <div class="form-group">
-                                    <label class="float-left">Course
-                                    </label>
-                                    <input type="text" class="form-control" formControlName="course"
-                                      placeholder="Enter the course"
-                                      [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].course.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].course.errors}">
-                                  </div>
-                                </div>
-                                <div class="col-sm-3">
-                                  <div class="form-group">
-                                    <label class="float-left">Name of Institute
-                                    </label>
-                                    <input type="text" class="form-control" formControlName="name_of_institute"
-                                      placeholder="Enter the Name of Institute"
-                                      [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].name_of_institute.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].name_of_institute.errors}">
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  <div class="form-group">
-                                    <label class="float-left">location
-                                    </label>
-                                    <input type="text" class="form-control" formControlName="location"
-                                      placeholder="Enter the location"
-                                      [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].location.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].location.errors}">
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  <div class="form-group">
-                                    <label class="float-left">Result
-                                    </label>
-                                    <input type="text" class="form-control" formControlName="result"
-                                      placeholder="Enter result(7.5 cgpa or 75%)"
-                                      [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].result.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].result.errors}">
-                                  </div>
-                                </div>
-                                <div class="col-sm-1">
-                                  <button type="button" class="btn btn-danger icon-btn rounded-circle mt-1"
-                                    *ngIf="i!==0" (click)="removeEducationFields(i)">
-                                    <em class="fa fa-minus text-white"></em>
-                                  </button>
-                                </div>
-                              </div>
-                            </ng-container>
-                          </div>
-                        </div>
+              </div>
+              <button class="btn btn-primary btn-sm" (click)="addEducationFields()"
+                [hidden]="portfolioSignIn.get('timelineDataEducation')['controls'].length>=3">Add
+                Education</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Projects</legend>
+            <div formArrayName="projects">
+              <div class="card mb-2" [formGroupName]="i"
+                *ngFor="let project of portfolioSignIn['controls'].projects['controls']; let i=index;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <div>Project {{i+1}}</div>
+                  <button type="button" class="btn btn-danger btn-sm small" (click)="removeProjectsFields(i)"
+                    *ngIf="i!==0">Remove</button>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Project Name*</label>
+                        <input type="text" class="form-control" formControlName="projectName"
+                          placeholder="Enter the Project Name"
+                          [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].projectName.errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].projectName.errors}">
                       </div>
                     </div>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="border step-pad15 step-margin position-relative">
-                      <p class="step-title bg-white">Add Projects</p>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div formArrayName="projects">
-                            <button class="btn btn-primary" (click)="addProjectFields()">Add
-                              Projects</button>
-
-                            <ng-container [formGroupName]="i"
-                              *ngFor="let project of portfolioSignIn['controls'].projects['controls']; let i=index;">
-                              <div class="border step-pad15 step-margin position-relative">
-                                <p class="step-title bg-white">Project-{{i+1}}</p>
-                                <button class="btn btn-danger" (click)="removeProjectsFields(i)" *ngIf="i!==0">Remove
-                                  Project</button>
-                                <div class="row">
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                      <label class="float-left">Project Name
-                                      </label>
-                                      <input type="text" class="form-control" formControlName="projectName"
-                                        placeholder="Enter the Project Name"
-                                        [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].projectName.errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].projectName.errors}">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                      <label class="float-left">Project Image Url
-                                      </label>
-                                      <input type="text" class="form-control" formControlName="imagePath"
-                                        placeholder="Enter the Project Image Url"
-                                        [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].imagePath.errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].imagePath.errors}">
-                                    </div>
-                                  </div>
-
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                      <label class="float-left">Technology
-                                      </label>
-                                      <input type="text" class="form-control" formControlName="technology"
-                                        placeholder="Enter the Technology"
-                                        [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].technology.errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].technology.errors}">
-                                    </div>
-                                  </div>
-
-                                  <div class="col-sm-12">
-                                    <div class="form-group">
-                                      <label class="float-left">Project Description
-                                      </label>
-                                      <div class="row" formArrayName="projectDescription"
-                                        *ngFor="let description of portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'];let k=index;">
-                                        <div class="col-sm-6">
-                                          <input type="text" class="form-control" [formControlName]="k"
-                                            placeholder="Enter the desription {{k+1}}"
-                                            [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'][k].errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'][k].errors}">
-                                        </div>
-                                        <div class="col-sm-2">
-                                          <button type="button" class="btn btn-primary icon-btn rounded-circle mt-1"
-                                            *ngIf="k===0" (click)="addProjectDescription(i)">
-                                            <em class="fa fa-plus text-white"></em>
-                                          </button>
-                                          <button type="button" class="btn btn-danger icon-btn rounded-circle mt-1"
-                                            *ngIf="k!==0" (click)="removeProjectDescription(i,k)">
-                                            <em class="fa fa-minus text-white"></em>
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </ng-container>
-                          </div>
-                        </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Project Image Url*</label>
+                        <input type="text" class="form-control" formControlName="imagePath"
+                          placeholder="Enter the Project Image Url"
+                          [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].imagePath.errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].imagePath.errors}">
                       </div>
                     </div>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label class="float-left">Experienced
-                      </label>
-                      <input type="checkbox" formControlName="isExperience" (change)="toggleIsExperience()"
-                        [ngClass]="{'error' : portfolioSignIn.controls.isExperience.errors, 'success' : !portfolioSignIn.controls.isExperience.errors}">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row" *ngIf="portfolioSignIn.get('isExperience').value">
-                  <div class="col-sm-12">
-                    <div class="border step-pad15 step-margin position-relative">
-                      <p class="step-title bg-white">Add Experience</p>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div formArrayName="timelineDataExperience">
-                            <button class="btn btn-primary" (click)="addExperienceFields()">Add
-                              Experience</button>
-
-                            <ng-container [formGroupName]="i"
-                              *ngFor="let experience of portfolioSignIn['controls'].timelineDataExperience['controls']; let i=index;">
-                              <div class="border step-pad15 step-margin position-relative">
-                                <p class="step-title bg-white">Experience-{{i+1}}</p>
-                                <button class="btn btn-danger" (click)="removeExperienceFields(i)" *ngIf="i!==0">Remove
-                                  Experience</button>
-                                <div class="row">
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                      <label class="float-left">Duration
-                                      </label>
-                                      <input type="number" class="form-control" formControlName="duration"
-                                        placeholder="Enter the Duration"
-                                        [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.errors}">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                      <label class="float-left">Company Name
-                                      </label>
-                                      <input type="text" class="form-control" formControlName="company_name"
-                                        placeholder="Enter the Company Name"
-                                        [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].company_name.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].company_name.errors}">
-                                    </div>
-                                  </div>
-
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                      <label class="float-left">Designation
-                                      </label>
-                                      <input type="text" class="form-control" formControlName="designation"
-                                        placeholder="Enter the designation"
-                                        [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.errors}">
-                                    </div>
-                                  </div>
-
-                                  <div class="col-sm-12">
-                                    <div class="form-group">
-                                      <label class="float-left">Description
-                                      </label>
-                                      <div class="row" formArrayName="description"
-                                        *ngFor="let description of portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description['controls'];let j=index;">
-                                        <div class="col-sm-6">
-                                          <input type="text" class="form-control" [formControlName]="j"
-                                            placeholder="Enter the desription {{j+1}}"
-                                            [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description['controls'][j].errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description['controls'][j].errors}">
-                                        </div>
-                                        <div class="col-sm-2">
-                                          <button type="button" class="btn btn-primary icon-btn rounded-circle mt-1"
-                                            *ngIf="j===0" (click)="addExperienceDescription(i)">
-                                            <em class="fa fa-plus text-white"></em>
-                                          </button>
-                                          <button type="button" class="btn btn-danger icon-btn rounded-circle mt-1"
-                                            *ngIf="j!==0" (click)="removeExperienceDescription(i,j)">
-                                            <em class="fa fa-minus text-white"></em>
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </ng-container>
-                          </div>
-                        </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Technology*</label>
+                        <input type="text" class="form-control" formControlName="technology"
+                          placeholder="Enter the Technology"
+                          [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].technology.errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].technology.errors}">
                       </div>
                     </div>
+
+                    <div class="col-12">
+                      <label>Project Description*</label>
+                      <div class="row mb-2" formArrayName="projectDescription"
+                        *ngFor="let description of portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls']; let k=index;">
+                        <div class="col-10 col-sm-11">
+                          <input type="text" class="form-control" [formControlName]="k"
+                            placeholder="Enter the desription {{k+1}}"
+                            [ngClass]="{'error' : portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'][k].errors, 'success' : !portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription['controls'][k].errors}">
+                        </div>
+                        <div class="col-2 col-sm-1">
+                          <button type="button" class="btn btn-danger btn-sm rounded-circle" *ngIf="k!==0"
+                            (click)="removeProjectDescription(i,k)">
+                            <i class="fa fa-minus text-white"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-primary btn-sm" (click)="addProjectDescription(i)">
+                        Add more
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <button class="btn btn-primary" (click)="onSubmit()">Login</button>
-                <!-- [routerLink]="['/Project-listing']" -->
-              </Form>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-sm" (click)="addProjectFields()">Add Project</button>
+          </fieldset>
+
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="form-group">
+                <input type="checkbox" id="isExperienced" class="mr-2 mt-4" formControlName="isExperience"
+                  (change)="toggleIsExperience()"
+                  [ngClass]="{'error' : portfolioSignIn.controls.isExperience.errors, 'success' : !portfolioSignIn.controls.isExperience.errors}">
+                <label class="form-label" for="isExperienced">Experienced</label>
+              </div>
             </div>
           </div>
-        </div>
+
+          <fieldset *ngIf="portfolioSignIn.get('isExperience').value" class="mt-0">
+            <legend>Experiences</legend>
+            <div formArrayName="timelineDataExperience">
+              <div class="card mb-2" [formGroupName]="i"
+                *ngFor="let experience of portfolioSignIn['controls'].timelineDataExperience['controls']; let i=index;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <div>Experience {{i+1}}</div>
+                  <button class="btn btn-danger btn-sm" (click)="removeExperienceFields(i)"
+                    *ngIf="i!==0">Remove</button>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-sm-8">
+                      <div class="form-group">
+                        <label>Company Name*</label>
+                        <input type="text" class="form-control" formControlName="company_name"
+                          placeholder="Enter the Company Name"
+                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].company_name.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].company_name.errors}">
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                      <div class="form-group">
+                        <label>Duration*</label>
+                        <input type="number" class="form-control" formControlName="duration"
+                          placeholder="Enter the Duration"
+                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.errors}">
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Designation*</label>
+                        <input type="text" class="form-control" formControlName="designation"
+                          placeholder="Enter the designation"
+                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.errors}">
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label>Description*</label>
+                      <div class="row mb-2" formArrayName="description"
+                        *ngFor="let description of portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description['controls'];let j=index;">
+                        <div class="col-10 col-sm-11">
+                          <input type="text" class="form-control" [formControlName]="j"
+                            placeholder="Enter the desription {{j+1}}"
+                            [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description['controls'][j].errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description['controls'][j].errors}">
+                        </div>
+                        <div class="col-2 col-sm-1">
+                          <button type="button" class="btn btn-danger btn-sm rounded-circle" *ngIf="j!==0"
+                            (click)="removeExperienceDescription(i,j)">
+                            <i class="fa fa-minus text-white"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-primary btn-sm" (click)="addExperienceDescription(i)">
+                        Add more
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-sm" (click)="addExperienceFields()">Add Experience</button>
+          </fieldset>
+
+          <div class="text-center mt-4 mb-2">
+            <button class="btn btn-primary px-4" [disabled]="!portfolioSignIn.valid" (click)="onSubmit()">Login</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
