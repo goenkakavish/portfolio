@@ -23,7 +23,7 @@ import { QuillModule } from 'ngx-quill';
     WorkListComponent,
     WorkDetailComponent,
     PersonalDetailsComponent
-    
+
   ],
   imports: [
     BrowserModule,

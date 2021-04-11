@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WorkService } from './work.service';
 
 @Component({
@@ -11,11 +11,11 @@ export class WorkComponent implements OnInit, OnDestroy {
   subscription: any;
   constructor(private workService: WorkService) { }
   ngOnInit(): void {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.subscription = this.workService.index.subscribe((index) => {
         this.indexWork = index;
       })
-    },0)
+    }, 0)
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
