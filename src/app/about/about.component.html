@@ -39,7 +39,10 @@
         </div>
         <div class="tab-content-timeline mt-3">
           <div *ngFor="let timelineExperience of timelineDataExperience">
-            <span class="date-listing mb-2">{{timelineExperience?.duration ? timelineExperience?.duration :'-'}}</span>
+            <span
+              class="date-listing mb-2">{{timelineExperience?.duration.durationFrom ? timelineExperience?.duration.durationFrom :'-'}}
+              -{{timelineExperience?.duration.durationTo ? timelineExperience?.duration.durationTo :'present'}}
+            </span>
             <ul class="timeline">
               <li class="timeline-inverted">
                 <div class="timeline-badge" class="timeline-badge COMPLETED">

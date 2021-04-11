@@ -229,7 +229,7 @@
                 <input type="checkbox" id="isExperienced" class="mr-2 mt-4" formControlName="isExperience"
                   (change)="toggleIsExperience()"
                   [ngClass]="{'error' : portfolioSignIn.controls.isExperience.errors, 'success' : !portfolioSignIn.controls.isExperience.errors}">
-                <label class="form-label" for="isExperienced">Experienced</label>
+                <label class="form-label" for="isExperienced">Experienced?</label>
               </div>
             </div>
           </div>
@@ -257,21 +257,41 @@
 
                     <div class="col-12 col-sm-4">
                       <div class="form-group">
-                        <label>Duration*</label>
-                        <input type="number" class="form-control" formControlName="duration"
-                          placeholder="Enter the Duration"
-                          [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.errors}">
-                      </div>
-                    </div>
-
-                    <div class="col-12">
-                      <div class="form-group">
                         <label>Designation*</label>
                         <input type="text" class="form-control" formControlName="designation"
                           placeholder="Enter the designation"
                           [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.errors}">
                       </div>
                     </div>
+                    <ng-container formGroupName="duration">
+
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Duration From*</label>
+                          <input type="date" class="form-control" formControlName="durationFrom"
+                            placeholder="Enter the Duration From" [max]="maxiDate" (change)="onDurationFromChange(i)"
+                            [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom.errors}">
+                        </div>
+                        <!-- -->
+
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <label>Duration To*</label>
+                            <label>
+                              <input type="checkbox" (change)="onChangeCurrentlyWorking($event,i)"> Is Currently
+                              Working?
+                            </label>
+                          </div>
+                          <input type="date" class="form-control" formControlName="durationTo"
+                            *ngIf="showExperienceCurrentTo" placeholder="Enter the Duration To" [max]="maxiDate"
+                            [min]="minDate"
+                            [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo.errors}">
+                        </div>
+                      </div>
+                    </ng-container>
+
 
                     <div class="col-12">
                       <label>Description*</label>

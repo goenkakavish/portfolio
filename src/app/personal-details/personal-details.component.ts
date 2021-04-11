@@ -1,16 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataShareServiceService } from '../data-share-service.service';
 @Component({
   selector: 'app-personal-details',
   templateUrl: './personal-details.component.html',
   styleUrls: ['./personal-details.component.scss']
 })
 export class PersonalDetailsComponent implements OnInit {
-
+  showExperienceCurrentTo: boolean = true;
   portfolioSignIn: FormGroup;
   maxiDate: any;
+  minDate: any;
   editModule = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -51,7 +51,10 @@ export class PersonalDetailsComponent implements OnInit {
   }
   initTimelineDataExperience(): FormGroup {
     return new FormGroup({
-      duration: new FormControl(null, [Validators.required]),
+      duration: new FormGroup({
+        durationFrom: new FormControl(null, [Validators.required]),
+        durationTo: new FormControl({ value: null, disabled: true }, [Validators.required])
+      }),
       company_name: new FormControl(null, [Validators.required]),
       designation: new FormControl(null, [Validators.required]),
       description: new FormArray([new FormControl(null, [Validators.required])]),
@@ -85,6 +88,7 @@ export class PersonalDetailsComponent implements OnInit {
   onSubmit() {
     localStorage.setItem('portfolioDetails', JSON.stringify(this.portfolioSignIn.value));
     console.log(this.portfolioSignIn.value);
+    console.log(this.portfolioSignIn);
     this.router.navigate(['home']);
   }
   removePhoneNumber(i) {
@@ -132,5 +136,29 @@ export class PersonalDetailsComponent implements OnInit {
   }
   removeExperienceDescription(i, j) {
     return (this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description as FormArray).removeAt(j);
+  }
+  onDurationFromChange(i) {
+    const durationTo = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo;
+    const durationFrom = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom;
+    this.minDate = durationFrom.value;
+    if (durationFrom.value) {
+      durationTo.enable();
+      durationTo.setValidators([Validators.required]);
+    } else {
+      durationTo.disabled();
+      durationTo.clearValidators();
+    }
+    durationTo.updateValueAndValidity();
+  }
+
+  onChangeCurrentlyWorking(event, i) {
+    const durationTo = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo;
+    if (event.target.checked) {
+      this.showExperienceCurrentTo = false;
+      durationTo.clearValidators();
+    } else {
+      this.showExperienceCurrentTo = true;
+      durationTo.setValidators([Validators.required]);
+    }
   }
 }
