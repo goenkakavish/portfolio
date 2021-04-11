@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   detailsUser: any;
 
   ngOnInit(): void {
-  this.detailsUser=this.dataShareService.fetchingDataOfUser();
+    this.detailsUser = this.dataShareService.fetchingDataOfUser();
   }
 
 }

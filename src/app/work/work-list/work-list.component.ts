@@ -16,7 +16,6 @@ export class WorkListComponent implements OnInit {
 
   ngOnInit(): void {
     this.workList = this.workService.getWorkList();
-    console.log(this.id);
   }
   onClickWork(index) {
     this.router.navigate(['work', index]);

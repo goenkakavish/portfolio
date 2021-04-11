@@ -2,7 +2,7 @@
   <div class="container shadow-lg">
     <div class="row box no-gutter bg-white p-1 px-sm-4">
       <div class="col">
-        <h1 class="login-header text-center my-2">Login</h1>
+        <h1 class="login-header text-center my-2">Portfolio</h1>
         <form [formGroup]="portfolioSignIn">
           <fieldset>
             <legend>Personal Details</legend>
@@ -48,8 +48,9 @@
               <div class="col-12">
                 <div class="form-group">
                   <label>About*</label>
-                  <quill-editor [styles]="{height:'300px'}" [modules]="editModule" placeholder="Enter About us. "
-                    formControlName="about">
+                  <quill-editor [styles]="{height:'300px'}" [modules]="editModule" placeholder="Enter About You. "
+                    formControlName="about"
+                    [ngClass]="{'error' : portfolioSignIn.controls.about.errors, 'success' : !portfolioSignIn.controls.about.errors}" >
                   </quill-editor>
 
                 </div>
@@ -301,7 +302,8 @@
           </fieldset>
 
           <div class="text-center mt-4 mb-2">
-            <button class="btn btn-primary px-4" [disabled]="!portfolioSignIn.valid" (click)="onSubmit()">Login</button>
+            <button type="button" class="btn btn-primary px-4" 
+              (click)="onSubmit()">Login</button>
           </div>
         </form>
       </div>

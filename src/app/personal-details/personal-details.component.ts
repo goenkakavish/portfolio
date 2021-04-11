@@ -38,14 +38,6 @@ export class PersonalDetailsComponent implements OnInit {
       timelineDataEducation: new FormArray([this.initTimelineDataEducation()]),
       projects: new FormArray([this.initProjects()]),
       isExperience: new FormControl(false),
-      timelineDataExperience: new FormArray([
-        new FormGroup({
-          duration: new FormControl(null),
-          company_name: new FormControl(null),
-          designation: new FormControl(null),
-          description: new FormArray([new FormControl(null)]),
-        })
-      ])
     })
   }
 
@@ -84,7 +76,7 @@ export class PersonalDetailsComponent implements OnInit {
 
   onSubmit() {
     localStorage.setItem('portfolioDetails', JSON.stringify(this.portfolioSignIn.value));
-    
+    console.log(this.portfolioSignIn.value);
     this.router.navigate(['home']);
   }
   removePhoneNumber(i) {
@@ -92,32 +84,9 @@ export class PersonalDetailsComponent implements OnInit {
   }
   toggleIsExperience() {
     if (this.portfolioSignIn.get('isExperience').value) {
-      for (let i = 0; i < this.portfolioSignIn['controls'].timelineDataExperience['controls'].length; i++) {
-        this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.setValidators([Validators.required]);
-        this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].company_name.setValidators([Validators.required]);
-        this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.setValidators([Validators.required]);
-        for (let j = 0; j < this.portfolioSignIn['controls'].timelineDataExperience['controls'][i]['controls'].description['controls'].length; j++) {
-          this.portfolioSignIn['controls'].timelineDataExperience['controls'][i]['controls'].description['controls'][j].setValidators([Validators.required]);
-        }
-      }
-
+      this.portfolioSignIn.addControl('timelineDataExperience', new FormArray([this.initTimelineDataExperience()]));
     } else {
-      for (let i = 0; i < this.portfolioSignIn['controls'].timelineDataExperience['controls'].length; i++) {
-        this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.clearValidators();
-        this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].company_name.clearValidators();
-        this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.clearValidators();
-        for (let j = 0; j < this.portfolioSignIn['controls'].timelineDataExperience['controls'][i]['controls'].description['controls'].length; j++) {
-          this.portfolioSignIn['controls'].timelineDataExperience['controls'][i]['controls'].description['controls'][j].clearValidators();
-        }
-      }
-    }
-    for (let i = 0; i < this.portfolioSignIn['controls'].timelineDataExperience['controls'].length; i++) {
-      this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration.updateValueAndValidity();
-      this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].company_name.updateValueAndValidity();
-      this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].designation.updateValueAndValidity();
-      for (let j = 0; j < this.portfolioSignIn['controls'].timelineDataExperience['controls'][i]['controls'].description['controls'].length; j++) {
-        this.portfolioSignIn['controls'].timelineDataExperience['controls'][i]['controls'].description['controls'][j].updateValueAndValidity();
-      }
+      this.portfolioSignIn.removeControl('timelineDataExperience');
     }
   }
 

@@ -45,6 +45,13 @@ fieldset {
 .form-control.success {
   border-left: 3px solid green;
 }
+quill-editor.ng-valid{
+  border-left: 3px solid green;
+}
+
+quill-editor.ng-invalid{
+  border-left: 3px solid red;
+}
 
 .step-pad15 {
   padding: 15px;

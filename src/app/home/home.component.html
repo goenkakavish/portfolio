@@ -1,38 +1,35 @@
 <app-header></app-header>
 <div class="card hero">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-6">
-                <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.remove.bg%2Fremove-bg-web%2Fa6c5f1017e9c0bdc648aad9debd2f40a17d45814%2Fassets%2Fstart-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg&imgrefurl=https%3A%2F%2Fwww.remove.bg%2F&tbnid=sp12V8x9gw6KuM&vet=12ahUKEwiMwa3Q4fXvAhWRXn0KHVpDD4IQMygDegUIARDYAQ..i&docid=4O2GvGuD-Cf09M&w=510&h=340&q=image&ved=2ahUKEwiMwa3Q4fXvAhWRXn0KHVpDD4IQMygDegUIARDYAQ" alt="KAVISH" class="imgPersonal">
-            </div>
-            <div class="col-sm-6 mt-2">
-                <h6>
-                    Hello Everybody, I am
-                </h6>
-                <h2>
-                    {{detailsUser.name}}
-                </h2>
-                <p>{{detailsUser.designation}}</p>
-                <p>
-                  {{detailsUser.about}}
-                </p>
-                <div class="mt-5">
-                    <p>
-                        <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
-                       {{detailsUser.dateOfBirth}}
-                    </p>
-                    <p><i class="fa fa-phone mr-2" aria-hidden="true"></i>{{detailsUser.phoneNumber[0]}}</p>
-                    <p><i class="fa fa-envelope mr-2" aria-hidden="true"></i>{{detailsUser.email}}</p>
-                </div>
-                <div class="mt-5">
-                    <a href="https://www.instagram.com" target="_blank" class="mr-2">
-                        <img src="../../assets/insta.jpeg" class="logo">
-                    </a>
-                    <a href="https://www.facebook.com" target="_blank">
-                        <img src="../../assets/facebook.png" class="logo">
-                    </a> 
-                </div>
-            </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <img
+          src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.remove.bg%2Fremove-bg-web%2Fa6c5f1017e9c0bdc648aad9debd2f40a17d45814%2Fassets%2Fstart-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg&imgrefurl=https%3A%2F%2Fwww.remove.bg%2F&tbnid=sp12V8x9gw6KuM&vet=12ahUKEwiMwa3Q4fXvAhWRXn0KHVpDD4IQMygDegUIARDYAQ..i&docid=4O2GvGuD-Cf09M&w=510&h=340&q=image&ved=2ahUKEwiMwa3Q4fXvAhWRXn0KHVpDD4IQMygDegUIARDYAQ"
+          alt="KAVISH" class="imgPersonal">
+      </div>
+      <div class="col-sm-6 mt-2">
+        <h6>
+          Hello Everybody, I am
+        </h6>
+        <h2>
+          {{detailsUser?.name ? detailsUser?.name:'-'}}
+        </h2>
+        <p>{{detailsUser?.designation ? detailsUser?.designation:'-'}}</p>
+        <p [innerHTML]="detailsUser?.about ? detailsUser?.about :'-'">
+        </p>
+        <div class="mt-5">
+          <p>
+            <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
+            {{detailsUser?.dateOfBirth ? detailsUser?.dateOfBirth : '-'}}
+          </p>
+          <p><i class="fa fa-phone mr-2" aria-hidden="true"></i>
+            <span *ngFor="let phone of detailsUser.phoneNumber;let i=index;">
+              {{phone}}<small *ngIf="i===0">,</small>
+            </span>
+          </p>
+          <p><i class="fa fa-envelope mr-2" aria-hidden="true"></i>{{detailsUser?.email ? detailsUser?.email:'-'}}</p>
         </div>
+      </div>
     </div>
+  </div>
 </div>
