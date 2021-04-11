@@ -42,6 +42,7 @@ export class PersonalDetailsComponent implements OnInit {
     });
     this.maxiDate = this.getMaximumDate();
   }
+
   getMaximumDate() {
     let today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
@@ -49,6 +50,7 @@ export class PersonalDetailsComponent implements OnInit {
     const yyyy = today.getFullYear();
     return yyyy + '-' + mm + '-' + dd;
   }
+
   initTimelineDataExperience(): FormGroup {
     return new FormGroup({
       duration: new FormGroup({
@@ -60,6 +62,7 @@ export class PersonalDetailsComponent implements OnInit {
       description: new FormArray([new FormControl(null, [Validators.required])]),
     })
   }
+
   initProjects(): FormGroup {
     return new FormGroup({
       projectName: new FormControl(null, [Validators.required]),
@@ -68,9 +71,11 @@ export class PersonalDetailsComponent implements OnInit {
       projectDescription: new FormArray([new FormControl(null, [Validators.required])]),
     })
   }
+
   ngAfterViewChecked(): void {
     this.changeDetectorRef.detectChanges();
   }
+
   initTimelineDataEducation(): FormGroup {
     return new FormGroup({
       year: new FormControl(null, [Validators.required, Validators.pattern('^[12][0-9]{3}$')]),
@@ -80,6 +85,7 @@ export class PersonalDetailsComponent implements OnInit {
       result: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(100), Validators.pattern('^((100)|([0-9]{1,2}(.[0-9]{1,2})?))$')])
     })
   }
+
   addPhoneNumber() {
     const control = new FormControl(null, [Validators.required]);
     (<FormArray>this.portfolioSignIn.get('phoneNumber')).push(control);
@@ -89,9 +95,11 @@ export class PersonalDetailsComponent implements OnInit {
     localStorage.setItem('portfolioDetails', JSON.stringify(this.portfolioSignIn.value));
     this.router.navigate(['home']);
   }
+
   removePhoneNumber(i) {
     return (this.portfolioSignIn.get('phoneNumber') as FormArray).removeAt(i);
   }
+
   toggleIsExperience() {
     this.showExperienceCurrentTo = true;
     if (this.portfolioSignIn.get('isExperience').value) {
@@ -104,39 +112,49 @@ export class PersonalDetailsComponent implements OnInit {
   removeEducationFields(i) {
     return (this.portfolioSignIn.get('timelineDataEducation') as FormArray).removeAt(i);
   }
+
   addEducationFields() {
     const control = this.portfolioSignIn.controls.timelineDataEducation as FormArray;
     control.push(this.initTimelineDataEducation());
   }
+
   addProjectFields() {
     const control = this.portfolioSignIn.controls.projects as FormArray;
     control.push(this.initProjects());
   }
+
   addExperienceFields() {
     const control = this.portfolioSignIn.controls.timelineDataExperience as FormArray;
     control.push(this.initTimelineDataExperience());
   }
+
   removeExperienceFields(i) {
     return (this.portfolioSignIn.get('timelineDataExperience') as FormArray).removeAt(i);
   }
+
   removeProjectsFields(i) {
     return (this.portfolioSignIn.get('projects') as FormArray).removeAt(i);
   }
+
   addProjectDescription(i) {
     const control = new FormControl(null, [Validators.required]);
     (<FormArray>this.portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription).push(control);
   }
+
   addExperienceDescription(i) {
     const control = new FormControl(null, [Validators.required]);
     (<FormArray>this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description).push(control);
   }
+
   removeProjectDescription(i, k) {
     return (this.portfolioSignIn.controls.projects['controls'][i]['controls'].projectDescription as FormArray).removeAt(k);
   }
+
   removeExperienceDescription(i, j) {
     return (this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].description as FormArray).removeAt(j);
   }
-  onDurationFromChange(event, i) {
+  
+  onDurationFromChange(i) {
     const durationTo = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo;
     const durationFrom = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom;
     this.minDate = durationFrom.value;

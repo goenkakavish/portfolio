@@ -280,7 +280,7 @@
                           <label>Duration From*</label>
                           <input type="date" class="form-control" formControlName="durationFrom"
                             placeholder="Enter the Duration From" [max]="maxiDate"
-                            (change)="onDurationFromChange($event,i)"
+                            (change)="onDurationFromChange(i)"
                             [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom.errors}">
                         </div>
                         <!-- -->
