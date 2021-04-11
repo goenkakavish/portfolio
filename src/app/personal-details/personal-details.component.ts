@@ -87,8 +87,6 @@ export class PersonalDetailsComponent implements OnInit {
 
   onSubmit() {
     localStorage.setItem('portfolioDetails', JSON.stringify(this.portfolioSignIn.value));
-    console.log(this.portfolioSignIn.value);
-    console.log(this.portfolioSignIn);
     this.router.navigate(['home']);
   }
   removePhoneNumber(i) {
@@ -153,7 +151,6 @@ export class PersonalDetailsComponent implements OnInit {
   }
 
   onChangeCurrentlyWorking(event, i) {
-    console.log(event.target.checked);
     const durationTo = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationTo;
     const durationFrom = this.portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom;
     if (event.target.checked) {

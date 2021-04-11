@@ -49,8 +49,7 @@
                 <div class="form-group">
                   <label>About*</label>
                   <quill-editor [styles]="{height:'300px'}" [modules]="editModule" placeholder="Enter About You. "
-                    formControlName="about"
-                    [ngClass]="{'error' : portfolioSignIn.controls.about.errors, 'success' : !portfolioSignIn.controls.about.errors}">
+                    formControlName="about">
                   </quill-editor>
 
                 </div>
@@ -76,6 +75,9 @@
                         <input type="number" class="form-control" [formControlName]="i"
                           placeholder="Enter {{i+1}} Phone Number"
                           [ngClass]="{'error' : portfolioSignIn.controls.phoneNumber['controls'][i].errors, 'success' : !portfolioSignIn.controls.phoneNumber['controls'][i].errors}">
+                        <small class="form-text text-muted">
+                          Your Mobile Number first digit must be from 6 to 9 and of 10 digits
+                        </small>
                       </div>
                     </div>
                     <div class="col-2 col-sm-1">
@@ -116,9 +118,12 @@
                     </div>
                     <div class="col-12 col-sm-4">
                       <div class="form-group">
-                        <label>Year*<small>Years from 1000 to 2999</small></label>
+                        <label>Year*</label>
                         <input type="number" class="form-control" formControlName="year" placeholder="Enter the year"
                           [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].year.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].year.errors}">
+                        <small class="form-text text-muted">
+                          Years from 1000 to 2999
+                        </small>
                       </div>
                     </div>
                     <div class="col-12 col-sm-8">
@@ -269,7 +274,8 @@
                         <div class="form-group">
                           <label>Duration From*</label>
                           <input type="date" class="form-control" formControlName="durationFrom"
-                            placeholder="Enter the Duration From" [max]="maxiDate" (change)="onDurationFromChange($event,i)"
+                            placeholder="Enter the Duration From" [max]="maxiDate"
+                            (change)="onDurationFromChange($event,i)"
                             [ngClass]="{'error' : portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom.errors, 'success' : !portfolioSignIn.controls.timelineDataExperience['controls'][i]['controls'].duration['controls'].durationFrom.errors}">
                         </div>
                         <!-- -->
@@ -280,8 +286,7 @@
                           <div class="d-flex justify-content-between align-items-center">
                             <label>Duration To*</label>
                             <label>
-                              <input type="checkbox" 
-                                (change)="onChangeCurrentlyWorking($event,i)"> Is Currently
+                              <input type="checkbox" (change)="onChangeCurrentlyWorking($event,i)"> Is Currently
                               Working?
                             </label>
                           </div>
