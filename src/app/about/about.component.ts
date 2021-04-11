@@ -24,7 +24,9 @@ export class AboutComponent implements OnInit {
 
     // this.timelineDataExperience = [{ duration: 'March,2 2020 - ongoing', company_name: 'Aspire Software Solutions', designation: 'Associate Software Engineer', description: ['Working on client facing web development in Agile process.', 'Client Communication and Estimations.', 'Review Code and Knowledge Transfer to team Members.'] },
     // { duration: 'December,2 2019 - March,2 2020', company_name: 'Aspire Software Solutions', designation: 'Trainee Engineer', description: ['Training in Javascript,Angular,Node-Js.', 'Make Application for Uploading government documents and show details in Angular.'] }]
-    this.timelineDataExperience = this.dataShareService.fetchingDataOfTimeLineDataExperience();
+    if (this.dataShareService.isExperienced) {
+      this.timelineDataExperience = this.dataShareService.fetchingDataOfTimeLineDataExperience();
+    }
   }
 
 }

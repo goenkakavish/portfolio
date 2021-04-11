@@ -10,6 +10,7 @@ import { DataShareServiceService } from '../data-share-service.service';
 export class PersonalDetailsComponent implements OnInit {
 
   portfolioSignIn: FormGroup;
+  maxiDate: any;
   editModule = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -33,14 +34,21 @@ export class PersonalDetailsComponent implements OnInit {
       imageUrl: new FormControl(null, [Validators.required]),
       designation: new FormControl(null, [Validators.required]),
       about: new FormControl(null, [Validators.required]),
-      phoneNumber: new FormArray([new FormControl(null, [Validators.required])]),
+      phoneNumber: new FormArray([new FormControl(null, [Validators.required, Validators.pattern('^[6-9][0-9]{9}$')])]),
       email: new FormControl(null, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       timelineDataEducation: new FormArray([this.initTimelineDataEducation()]),
       projects: new FormArray([this.initProjects()]),
       isExperience: new FormControl(false),
-    })
+    });
+    this.maxiDate = this.getMaximumDate();
   }
-
+  getMaximumDate() {
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    return yyyy + '-' + mm + '-' + dd;
+  }
   initTimelineDataExperience(): FormGroup {
     return new FormGroup({
       duration: new FormControl(null, [Validators.required]),
@@ -62,7 +70,7 @@ export class PersonalDetailsComponent implements OnInit {
   }
   initTimelineDataEducation(): FormGroup {
     return new FormGroup({
-      year: new FormControl(null, [Validators.required]),
+      year: new FormControl(null, [Validators.required, Validators.pattern('^[12][0-9]{3}$')]),
       course: new FormControl(null, [Validators.required]),
       name_of_institute: new FormControl(null, [Validators.required]),
       location: new FormControl(null, [Validators.required]),

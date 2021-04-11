@@ -19,7 +19,7 @@
                 <div class="form-group">
                   <label>Date of Birth*</label>
                   <input type="date" class="form-control" formControlName="dateOfBirth"
-                    placeholder="Enter your date of birth"
+                    placeholder="Enter your date of birth" [max]="maxiDate"
                     [ngClass]="{'error' : portfolioSignIn.controls.dateOfBirth.errors, 'success' : !portfolioSignIn.controls.dateOfBirth.errors}">
                 </div>
               </div>
@@ -50,7 +50,7 @@
                   <label>About*</label>
                   <quill-editor [styles]="{height:'300px'}" [modules]="editModule" placeholder="Enter About You. "
                     formControlName="about"
-                    [ngClass]="{'error' : portfolioSignIn.controls.about.errors, 'success' : !portfolioSignIn.controls.about.errors}" >
+                    [ngClass]="{'error' : portfolioSignIn.controls.about.errors, 'success' : !portfolioSignIn.controls.about.errors}">
                   </quill-editor>
 
                 </div>
@@ -73,7 +73,7 @@
                     *ngFor="let phone of portfolioSignIn.get('phoneNumber')['controls'];let i=index;">
                     <div class="col-10 col-sm-11">
                       <div class="form-group">
-                        <input type="text" class="form-control" [formControlName]="i"
+                        <input type="number" class="form-control" [formControlName]="i"
                           placeholder="Enter {{i+1}} Phone Number"
                           [ngClass]="{'error' : portfolioSignIn.controls.phoneNumber['controls'][i].errors, 'success' : !portfolioSignIn.controls.phoneNumber['controls'][i].errors}">
                       </div>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="col-12 col-sm-4">
                       <div class="form-group">
-                        <label>Year*</label>
+                        <label>Year*<small>Years from 1000 to 2999</small></label>
                         <input type="number" class="form-control" formControlName="year" placeholder="Enter the year"
                           [ngClass]="{'error' : portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].year.errors, 'success' : !portfolioSignIn.controls.timelineDataEducation['controls'][i]['controls'].year.errors}">
                       </div>
@@ -302,8 +302,7 @@
           </fieldset>
 
           <div class="text-center mt-4 mb-2">
-            <button type="button" class="btn btn-primary px-4" 
-              (click)="onSubmit()">Login</button>
+            <button type="button" class="btn btn-primary px-4" (click)="onSubmit()">Login</button>
           </div>
         </form>
       </div>

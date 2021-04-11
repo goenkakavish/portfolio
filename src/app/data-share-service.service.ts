@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataShareServiceService {
   constructor() { }
-
+  public isExperienced = (JSON.parse(localStorage.getItem('portfolioDetails'))).isExperience;
   fetchingDataOfUser() {
     let data = JSON.parse(localStorage.getItem('portfolioDetails'));
     return data;
